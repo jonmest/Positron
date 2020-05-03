@@ -1,4 +1,5 @@
 import risks as r
+from fetch_excerpt import fetchExcerpt
 
 # Local class
 class RiskPusher:
@@ -10,7 +11,7 @@ class RiskPusher:
 
     def push (self, risk):
         location = self.path + " Line " + str(self.count)
-        self.riskList.push(risk(location, self.line))
+        self.riskList.push(risk(location, fetchExcerpt(self.path, self.count)))
 
 class PatternMatcher:
     def __init__(self, string: str):
