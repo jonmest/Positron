@@ -2,14 +2,15 @@ import risks as r
 
 # Local class
 class RiskPusher:
-    def __init__(self, riskList, path, count):
+    def __init__(self, riskList, path, line, count):
         self.riskList = riskList
         self.path = path
+        self.line = line
         self.count = count
 
     def push (self, risk):
         location = self.path + " Line " + str(self.count)
-        self.riskList.push(risk(location))
+        self.riskList.push(risk(location, self.line))
 
 class PatternMatcher:
     def __init__(self, string: str):
@@ -35,7 +36,7 @@ def pushRisk (riskList, risk, path, count):
     riskList.push(risk(location))
 
 def analyze_line (line: str, line_count: int, path: str, risks: r.Risk_List()):
-    risk_pusher = RiskPusher(risks, path, line_count).push
+    risk_pusher = RiskPusher(risks, path, line, line_count).push
     matcher = PatternMatcher(line).matchPatterns
 
     # Only load secure content
