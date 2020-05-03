@@ -16,16 +16,15 @@ class PatternMatcher:
         self.string = string
     
     def matchPatterns (self, patterns: tuple, toLower: bool = False) -> bool:
-        for pattern in patterns:
-            toCompare = self.string
-            if toLower:
-                toCompare = self.string.lower()
+        for p in patterns:
+            cmpa = self.string
+            if toLower: cmpa = self.string.lower()
 
-            if type(pattern) is tuple:
-                if pattern[0] in toCompare and pattern[1] in toCompare:
+            if type(p) is tuple:
+                if p[0] in cmpa and p[1] in cmpa:
                     return True
             else:
-                if pattern in toCompare:
+                if p in cmpa:
                     return True
         return False
 
@@ -61,19 +60,19 @@ def analyze_line (line: str, line_count: int, path: str, risks: r.Risk_List()):
 
     # Do not allow all CSP
     if matcher((
-        ('Content-Security-Policy', '*')
+        ('Content-Security-Policy', '*'),
     )):
         risk_pusher(r.Content_Security)
     
     # Do Not Set allowRunningInsecureContent to true
     if matcher((
-        ('allowRunningInsecureContent', 'true')
+        ('allowRunningInsecureContent', 'true'),
     )):
         risk_pusher(r.AllowRunningInsecureContent)
 
     # Do Not Enable Experimental Features
     if matcher((
-        ('experimentalFeatures', 'true')
+        ('experimentalFeatures', 'true'),
     )):
         risk_pusher(r.Experimental)
 
@@ -87,6 +86,4 @@ def analyze_line (line: str, line_count: int, path: str, risks: r.Risk_List()):
 
     # Do not use openExternal with untrusted content
     if matcher(('openExternal',)):
-        print("Open External")
-        print(line)
         risk_pusher(r.Open_External)

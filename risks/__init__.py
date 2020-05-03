@@ -14,3 +14,4 @@ from .rc_permission import RC_Permission
 from .remote import Remote
 from .verify_webView import Verify_WebView
 from .risk_list import Risk_List
+from .allowRunningInsecureContent import AllowRunningInsecureContent
