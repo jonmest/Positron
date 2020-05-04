@@ -1,5 +1,6 @@
 from controllers import Prio, Colors
 
+# Intended to be abstract
 class Risk ():
     def __init__ (self, name, desc, loc, excerpt, prio, link=None):
         self.name = name

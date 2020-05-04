@@ -10,7 +10,7 @@ def fetchExcerpt (path: str, line_count: int) -> str:
         while line:
             if (count >= line_count - 1 and count <= line_count + 1):
                 if (count == line_count):
-                    string += '### ' + Colors.HEADER + line + Colors.ENDC
+                    string += '### ' + Colors.OKBLUE + line + Colors.ENDC
                 else: string += '### ' + line
             line = fp.readline()
             count += 1

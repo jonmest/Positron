@@ -1,5 +1,5 @@
 from controllers import Prio, Colors
-from .risk import Risk
+from ..risk import Risk
 
 class Allow_Popups(Risk):
     def __init__(self, loc, excerpt):

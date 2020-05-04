@@ -5,11 +5,14 @@ class Risk_List:
     def __init__ (self):
         self.list: list = []
     
-    def push (self, toPush):
+    def push (self, toPush: Risk):
         self.list.append(toPush)
+
+    def merge (self, toMerge):
+        self.list = self.list + toMerge.list
 
     def toString (self):
         string = ''
         for item in self.list:
-            string += item.toString() + '\n'
+            string += '\n' + item.toString() + '\n'
         return string

@@ -1,4 +1,4 @@
-import risks as r
+import models as r
 from .fetch_excerpt import fetchExcerpt
 
 # Local class

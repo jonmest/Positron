@@ -1,5 +1,5 @@
 from controllers import Prio, Colors
-from .risk import Risk
+from ..risk import Risk
 
 class Blink(Risk):
     def __init__(self, loc, excerpt):
