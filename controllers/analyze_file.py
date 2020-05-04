@@ -1,5 +1,5 @@
 import risks as r
-from analyze_line import analyze_line 
+from .analyze_line import analyze_line 
 
 def analyze_file (path: str) -> r.Risk_List:
     risks = r.Risk_List()

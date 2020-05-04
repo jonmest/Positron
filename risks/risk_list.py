@@ -1,5 +1,4 @@
-from prio import Prio
-from colors import Colors
+from controllers import Prio, Colors
 from .risk import Risk
 
 class Risk_List:
@@ -12,5 +11,5 @@ class Risk_List:
     def toString (self):
         string = ''
         for item in self.list:
-            string += '\n\n' + item.toString() + '\n'
+            string += item.toString() + '\n'
         return string

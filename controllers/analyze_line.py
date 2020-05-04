@@ -1,5 +1,5 @@
 import risks as r
-from fetch_excerpt import fetchExcerpt
+from .fetch_excerpt import fetchExcerpt
 
 # Local class
 class RiskPusher:

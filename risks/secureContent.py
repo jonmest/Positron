@@ -1,7 +1,5 @@
-from prio import Prio
-from colors import Colors
+from controllers import Prio, Colors
 from .risk import Risk
-
 class SecureContent(Risk):
     def __init__(self, loc, excerpt):
         Risk.__init__(self,

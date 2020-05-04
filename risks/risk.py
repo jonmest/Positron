@@ -1,5 +1,4 @@
-from colors import Colors
-from prio import Prio
+from controllers import Prio, Colors
 
 class Risk ():
     def __init__ (self, name, desc, loc, excerpt, prio, link=None):
@@ -10,8 +9,9 @@ class Risk ():
         self.prio = prio
         self.link = link
 
-    def toString (self):
-        return self.nameToString() + ' found at ' + self.loc + ':\n ' + self.excerpt + '\nn' + self.desc + ' [' + self.linkToString() + ']'
+    def toString (self, verbose:bool = False):
+        if verbose: return self.nameToString() + ' found at ' + self.loc + ':\n' + self.excerpt + '\n' + self.desc + ' [' + self.linkToString() + ']'
+        return self.nameToString() + ' found at ' + self.loc + ': \n' + self.excerpt + '[' + self.linkToString() + ']'
 
     def linkToString (self):
         if self.link == None:

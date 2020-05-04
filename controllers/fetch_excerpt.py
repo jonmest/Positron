@@ -1,3 +1,5 @@
+from .colors import Colors
+
 def fetchExcerpt (path: str, line_count: int) -> str:
     string = ''
     try:
@@ -7,7 +9,9 @@ def fetchExcerpt (path: str, line_count: int) -> str:
         
         while line:
             if (count >= line_count - 1 and count <= line_count + 1):
-                string += line
+                if (count == line_count):
+                    string += '### ' + Colors.HEADER + line + Colors.ENDC
+                else: string += '### ' + line
             line = fp.readline()
             count += 1
     finally:

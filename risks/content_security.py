@@ -1,5 +1,4 @@
-from prio import Prio
-from colors import Colors
+from controllers import Prio, Colors
 from .risk import Risk
 
 class Content_Security(Risk):
