@@ -1,5 +1,8 @@
 from controllers import Prio, Colors
-
+from rich.text import Text
+from rich.rule import Rule
+from rich.table import Column, Table
+from rich .panel import Panel
 # Intended to be abstract
 class Risk ():
     def __init__ (self, name, desc, loc, excerpt, prio, link=None):
@@ -10,9 +13,11 @@ class Risk ():
         self.prio = prio
         self.link = link
 
-    def toString (self, verbose:bool = False):
-        if verbose: return self.nameToString() + ' found at ' + self.loc + ':\n' + self.excerpt + '\n' + self.desc + ' [' + self.linkToString() + ']'
-        return self.nameToString() + ' found at ' + self.loc + ': \n' + self.excerpt + '[' + self.linkToString() + ']'
+    def toString (self, verbose:bool = False) -> list:
+        return [self.nameToString(), self.description(verbose), self.locationString(), self.excerptView(), '\n\n']
+
+    def excerptView (self):
+        return Panel(self.excerpt)
 
     def linkToString (self):
         if self.link == None:
@@ -20,14 +25,27 @@ class Risk ():
         else:
             return self.link
 
+    def locationString (self):
+        n = Text(self.loc, style='italic bold blue')
+        return n
+
+    def description (self, verbose:bool = False):
+        string = None
+        if verbose:
+            string = self.desc + ' [bold blue]' + self.link+ '[/bold blue]'
+        else:
+            string = self.link
+            
+        return Panel(string, style='black bold')
+
+
+
     def nameToString (self):
-        color = ''
+        styleStr = None
+        if self.prio == Prio.VERY_BAD: styleStr = "bold red"
+        if self.prio == Prio.PRETTY_BAD: styleStr = "bold yellow"
+        if self.prio == Prio.NOT_GOOD: styleStr = "bold blue"
         
-        if self.prio == Prio.VERY_BAD:
-            color = Colors.FAIL
-        if self.prio == Prio.PRETTY_BAD:
-            color = Colors.WARNING
-        if self.prio == Prio.NOT_GOOD:
-            color = Colors.OKBLUE
+        return Rule(Text(self.name, style=styleStr, justify='center'), style='bold grey')
+
         
-        return color + self.name + Colors.ENDC

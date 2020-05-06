@@ -10,7 +10,7 @@ class RiskPusher:
         self.count = count
 
     def push (self, risk):
-        location = self.path + " Line " + str(self.count)
+        location = self.path
         self.riskList.push(risk(location, fetchExcerpt(self.path, self.count)))
 
 class PatternMatcher:

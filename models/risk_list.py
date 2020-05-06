@@ -11,8 +11,8 @@ class Risk_List:
     def merge (self, toMerge):
         self.list = self.list + toMerge.list
 
-    def toString (self):
-        string = ''
+    def toString (self, verbose: bool = False):
+        string = []
         for item in self.list:
-            string += '\n' + item.toString() + '\n'
+            string.append(item.toString(verbose))
         return string

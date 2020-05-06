@@ -2,11 +2,19 @@ import os
 import re
 import sys
 from controllers import positive_file_scan
+from rich.console import Console
+from rich.text import Text
+
+console = Console('standard')
 
 # Call this file with an argument pointing to the directory
 # You want to analyze. For example: 
 # `python3 main.py ~/electron-project/src`
 path = sys.argv[1]
+
+setVerbose = False
+if len(sys.argv) > 2:
+    if sys.argv[2] == '-y': setVerbose = True
 
 # Configure blacklist by adding patterns
 # that shall not occur in ANY file or directory name
@@ -47,4 +55,7 @@ list_of_files = cleaner(files, blacklist, demandList)
 #   it's absent from the whole project.
 #
 risks = positive_file_scan(list_of_files)
-print(risks.toString())
+for risk in risks.toString(setVerbose):
+    for item in risk:
+        console.print(item)
+
