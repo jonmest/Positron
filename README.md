@@ -17,6 +17,6 @@ Positive scanning is implemented. Negative scanning is not.
 ## How to use:
 1. `python3 main.py <path-to-directory-of-electron-project>`
 
-For verbose mode, where a brief explanation of the security risk is included, add the flag `-y`.
+For verbose mode, where a brief explanation of the security risk is included, add the flag `-v`.
 
-`python3 main.py <path-to-directory-of-electron-project> -y`
+`python3 main.py <path-to-directory-of-electron-project> -v`
