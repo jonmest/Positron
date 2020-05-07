@@ -1,0 +1,300 @@
+Insecure Protocol
+[4;34mhttps://www.electronjs.org[0m[4;34m/docs/tutorial/[0m[4;34msecurity[0m#[1;34m1[0m-only-load-secure-content
+[35m/home/jon/project/src/main_app/api_server/[0mmain.js
+  14 [33;40mrequire[0m[37;40m([0m[33;40m'./server'[0m[37;40m)[0m[37;40m([0m[33;40mport[0m[37;40m,[0m[37;40m [0m[37;40m([0m[37;40m)[0m[37;40m [0m[37;40m=>[0m[37;40m [0m[37;40m{[0m[40m                                          [0m
+  15 [37;40m    [0m[33;40mconsole[0m[37;40m.[0m[33;40mlog[0m[37;40m([0m[33;40m`[0m[33;40mCICDB server running on http://localhost:[0m[33;40m${[0m[33;40mport[0m[33;40m}[0m[33;40m.[0m[33;40m`[0m[37;40m)[0m[40m       [0m
+  16 [37;40m}[0m[37;40m)[0m[40m                                                                         [0m
+
+
+Insecure Protocol
+[4;34mhttps://www.electronjs.org[0m[4;34m/docs/tutorial/[0m[4;34msecurity[0m#[1;34m1[0m-only-load-secure-content
+[35m/home/jon/project/src/main_app/src/[0mstart-react.js
+  4 [36;40mconst[0m[37;40m [0m[33;40mport[0m[37;40m [0m[31;40m=[0m[37;40m [0m[33;40mprocess[0m[37;40m.[0m[33;40menv[0m[37;40m.[0m[33;40mPORT[0m[37;40m [0m[31;40m?[0m[37;40m [0m[33;40mprocess[0m[37;40m.[0m[33;40menv[0m[37;40m.[0m[33;40mPORT[0m[37;40m [0m[31;40m-[0m[37;40m [0m[37;40m100[0m[37;40m [0m[31;40m:[0m[37;40m [0m[37;40m3000[0m[40m               [0m
+  5 [40m                                                                            [0m
+  6 [33;40mprocess[0m[37;40m.[0m[33;40menv[0m[37;40m.[0m[33;40mELECTRON_START_URL[0m[37;40m [0m[31;40m=[0m[37;40m [0m[33;40m`[0m[33;40mhttp://localhost:[0m[33;40m${[0m[33;40mport[0m[33;40m}[0m[33;40m`[0m[40m                 [0m
+  7 [40m                                                                            [0m
+  8 [36;40mconst[0m[37;40m [0m[33;40mclient[0m[37;40m [0m[31;40m=[0m[37;40m [0m[36;40mnew[0m[37;40m [0m[33;40mnet[0m[37;40m.[0m[33;40mSocket[0m[37;40m([0m[37;40m)[0m[40m                                             [0m
+
+
+Insecure Protocol
+[4;34mhttps://www.electronjs.org[0m[4;34m/docs/tutorial/[0m[4;34msecurity[0m#[1;34m1[0m-only-load-secure-content
+[35m/home/jon/project/src/main_app/src/[0mApp.js
+  19 [37;40m  [0m[30;40m// const checkIfOutpostExists = () => {[0m[40m                                  [0m
+  20 [37;40m  [0m[30;40m//   fetch([0m[40m                                                              [0m
+  21 [37;40m  [0m[30;40m//     'http://localhost:5000/open/exists-client', [0m[40m                      [0m
+  22 [37;40m  [0m[30;40m//     {[0m[40m                                                                 [0m
+  23 [37;40m  [0m[30;40m//         method: 'GET',[0m[40m                                                [0m
+
+
+Node Integration
+[4;34mhttps://www.electronjs.org[0m[4;34m/docs/tutorial/[0m[4;34msecurity[0m#[1;34m1[0m-only-load-secure-content
+[35m/home/jon/project/src/main_app/src/[0mstart.js
+  19 [37;40m    [0m[33;40mheight[0m[31;40m:[0m[37;40m [0m[37;40m600[0m[37;40m,[0m[40m                                                           [0m
+  20 [37;40m    [0m[33;40mwebPreferences[0m[31;40m:[0m[37;40m [0m[37;40m{[0m[40m                                                      [0m
+  21 [37;40m      [0m[33;40mnodeIntegration[0m[31;40m:[0m[37;40m [0m[36;40mtrue[0m[40m                                                [0m
+  22 [37;40m    [0m[37;40m}[0m[40m                                                                      [0m
+  23 [37;40m  [0m[37;40m}[0m[37;40m)[0m[40m                                                                       [0m
+
+
+Insecure Protocol
+[4;34mhttps://www.electronjs.org[0m[4;34m/docs/tutorial/[0m[4;34msecurity[0m#[1;34m1[0m-only-load-secure-content
+[35m/home/jon/project/src/main_app/src/components/pages/[0mHome.js
+  12 [37;40m  [0m[36;40mconst[0m[37;40m [0m[33;40mcheckIfOutpostExists[0m[37;40m [0m[31;40m=[0m[37;40m [0m[37;40m([0m[37;40m)[0m[37;40m [0m[37;40m=>[0m[37;40m [0m[37;40m{[0m[40m                                     [0m
+  13 [37;40m    [0m[33;40mget[0m[37;40m([0m[33;40m'http://localhost:5000/open/exists-client'[0m[37;40m,[0m[37;40m [0m[36;40mnull[0m[37;40m)[0m[40m                  [0m
+  14 [37;40m    [0m[37;40m.[0m[33;40mthen[0m[37;40m([0m[33;40mdata[0m[37;40m [0m[37;40m=>[0m[37;40m [0m[37;40m{[0m[40m                                                        [0m
+  15 [37;40m      [0m[36;40mif[0m[37;40m [0m[37;40m([0m[33;40mdata[0m[37;40m.[0m[33;40mresult[0m[37;40m [0m[31;40m===[0m[37;40m [0m[33;40m'true'[0m[37;40m)[0m[37;40m [0m[33;40msetOutpostExists[0m[37;40m([0m[36;40mtrue[0m[37;40m)[0m[40m                   [0m
+
+
+Insecure Protocol
+[4;34mhttps://www.electronjs.org[0m[4;34m/docs/tutorial/[0m[4;34msecurity[0m#[1;34m1[0m-only-load-secure-content
+[35m/home/jon/project/src/main_app/src/components/pages/[0mContact.js
+  77 [37;40m   [0m[31;40m*[0m[31;40m/[0m[40m                                                                      [0m
+  78 [37;40m  [0m[33;40museEffect[0m[37;40m([0m[37;40m([0m[37;40m)[0m[37;40m [0m[37;40m=>[0m[37;40m [0m[37;40m{[0m[40m                                                        [0m
+  79 [37;40m    [0m[33;40mget[0m[37;40m([0m[33;40m`[0m[33;40mhttp://localhost:5000/outpost/contacts?id=[0m[33;40m${[0m[33;40mprops[0m[37;40m.[0m[33;40mmatch[0m[37;40m.[0m[33;40mparams[0m[37;40m.[0m[33;40mcon[0m
+  80 [37;40m    [0m[33;40mglobalContext[0m[37;40m.[0m[33;40mbearToken[0m[37;40m)[0m[40m                                               [0m
+  81 [37;40m    [0m[37;40m.[0m[33;40mthen[0m[37;40m([0m[33;40mres[0m[37;40m [0m[37;40m=>[0m[37;40m [0m[33;40mres[0m[37;40m.[0m[33;40mcontacts[0m[37;40m)[0m[40m                                             [0m
+
+
+Insecure Protocol
+[4;34mhttps://www.electronjs.org[0m[4;34m/docs/tutorial/[0m[4;34msecurity[0m#[1;34m1[0m-only-load-secure-content
+[35m/home/jon/project/src/main_app/src/components/pages/[0mContact.js
+  85 [37;40m    [0m[33;40mget[0m[37;40m([0m[40m                                                                   [0m
+  86 [37;40m      [0m[33;40m`[0m[33;40mhttp://localhost:5000/outpost/messages?id=[0m[33;40m${[0m[33;40mprops[0m[37;40m.[0m[33;40mmatch[0m[37;40m.[0m[33;40mparams[0m[37;40m.[0m[33;40mconta[0m
+  87 [37;40m      [0m[33;40mglobalContext[0m[37;40m.[0m[33;40mbearToken[0m[37;40m,[0m[40m                                             [0m
+  88 [37;40m    [0m[37;40m)[0m[40m                                                                      [0m
+
+
+Insecure Protocol
+[4;34mhttps://www.electronjs.org[0m[4;34m/docs/tutorial/[0m[4;34msecurity[0m#[1;34m1[0m-only-load-secure-content
+[35m/home/jon/project/src/main_app/src/components/pages/[0mContact.js
+  108 [37;40m    [0m[33;40mconsole[0m[37;40m.[0m[33;40mlog[0m[37;40m([0m[33;40m"Received message!"[0m[37;40m)[0m[40m                                      [0m
+  109 [37;40m    [0m[33;40mpost[0m[37;40m([0m[40m                                                                 [0m
+  110 [37;40m      [0m[33;40m'http://localhost:5000/outpost/decrypt'[0m[37;40m,[0m[40m                            [0m
+  111 [37;40m      [0m[33;40mglobalContext[0m[37;40m.[0m[33;40mbearToken[0m[37;40m,[0m[40m                                            [0m
+  112 [37;40m      [0m[37;40m{[0m[37;40m [0m[33;40mmessage[0m[37;40m [0m[37;40m}[0m[40m                                                         [0m
+
+
+Insecure Protocol
+[4;34mhttps://www.electronjs.org[0m[4;34m/docs/tutorial/[0m[4;34msecurity[0m#[1;34m1[0m-only-load-secure-content
+[35m/home/jon/project/src/main_app/src/components/pages/[0mContact.js
+  113 [37;40m    [0m[37;40m)[0m[37;40m.[0m[33;40mthen[0m[37;40m([0m[33;40mdecrypted[0m[37;40m [0m[37;40m=>[0m[37;40m [0m[37;40m{[0m[40m                                                 [0m
+  114 [37;40m      [0m[33;40mpost[0m[37;40m([0m[40m                                                               [0m
+  115 [37;40m        [0m[33;40m'http://localhost:5000/outpost/messages'[0m[37;40m,[0m[40m                         [0m
+  116 [37;40m        [0m[33;40mglobalContext[0m[37;40m.[0m[33;40mbearToken[0m[37;40m,[0m[40m                                          [0m
+  117 [37;40m        [0m[33;40mdecrypted[0m[37;40m.[0m[33;40mmessage[0m[40m                                                 [0m
+
+
+Insecure Protocol
+[4;34mhttps://www.electronjs.org[0m[4;34m/docs/tutorial/[0m[4;34msecurity[0m#[1;34m1[0m-only-load-secure-content
+[35m/home/jon/project/src/main_app/src/components/pages/[0mContact.js
+  154 [37;40m    [0m[30;40m// Store to local message DB before encryption[0m[40m                        [0m
+  155 [37;40m    [0m[33;40mpost[0m[37;40m([0m[33;40m'http://localhost:5000/outpost/messages'[0m[37;40m,[0m[40m                        [0m
+  156 [37;40m      [0m[33;40mglobalContext[0m[37;40m.[0m[33;40mbearToken[0m[37;40m,[0m[40m                                            [0m
+  157 [37;40m      [0m[33;40mbody[0m[37;40m)[0m[40m                                                               [0m
+
+
+Insecure Protocol
+[4;34mhttps://www.electronjs.org[0m[4;34m/docs/tutorial/[0m[4;34msecurity[0m#[1;34m1[0m-only-load-secure-content
+[35m/home/jon/project/src/main_app/src/components/pages/[0mContact.js
+  162 [37;40m    [0m[31;40m*[0m[37;40m [0m[33;40mEncrypt[0m[37;40m [0m[33;40mmessage[0m[40m                                                     [0m
+  163 [37;40m    [0m[31;40m*[0m[31;40m/[0m[40m                                                                    [0m
+  164 [37;40m    [0m[33;40mpost[0m[37;40m([0m[33;40m'http://localhost:5000/outpost/encrypt'[0m[37;40m,[0m[40m                         [0m
+  165 [37;40m      [0m[33;40mglobalContext[0m[37;40m.[0m[33;40mbearToken[0m[37;40m,[0m[40m                                            [0m
+  166 [37;40m      [0m[33;40mbody[0m[37;40m)[0m[40m                                                               [0m
+
+
+Insecure Protocol
+[4;34mhttps://www.electronjs.org[0m[4;34m/docs/tutorial/[0m[4;34msecurity[0m#[1;34m1[0m-only-load-secure-content
+[35m/home/jon/project/src/main_app/src/components/pages/[0mDashboard.js
+  21 [37;40m              [0m[33;40msocket[0m[37;40m.[0m[33;40mon[0m[37;40m([0m[33;40m'message'[0m[37;40m,[0m[37;40m [0m[33;40mmessage[0m[37;40m [0m[37;40m=>[0m[37;40m [0m[37;40m{[0m[40m                            [0m
+  22 [37;40m                [0m[33;40mpost[0m[37;40m([0m[40m                                                      [0m
+  23 [37;40m                    [0m[33;40m'http://localhost:5000/outpost/decrypt'[0m[37;40m,[0m[40m               [0m
+  24 [37;40m                    [0m[33;40mbearToken[0m[37;40m,[0m[40m                                             [0m
+  25 [37;40m                    [0m[37;40m{[0m[37;40m [0m[33;40mmessage[0m[37;40m [0m[37;40m}[0m[40m                                            [0m
+
+
+Insecure Protocol
+[4;34mhttps://www.electronjs.org[0m[4;34m/docs/tutorial/[0m[4;34msecurity[0m#[1;34m1[0m-only-load-secure-content
+[35m/home/jon/project/src/main_app/src/components/pages/[0mDashboard.js
+  26 [37;40m                  [0m[37;40m)[0m[37;40m.[0m[33;40mthen[0m[37;40m([0m[33;40mdecrypted[0m[37;40m [0m[37;40m=>[0m[37;40m [0m[37;40m{[0m[40m                                    [0m
+  27 [37;40m                    [0m[33;40mpost[0m[37;40m([0m[40m                                                  [0m
+  28 [37;40m                      [0m[33;40m'http://localhost:5000/outpost/messages'[0m[37;40m,[0m[40m            [0m
+  29 [37;40m                      [0m[33;40mbearToken[0m[37;40m,[0m[40m                                           [0m
+  30 [37;40m                      [0m[33;40mdecrypted[0m[37;40m.[0m[33;40mmessage[0m[40m                                    [0m
+
+
+Insecure Protocol
+[4;34mhttps://www.electronjs.org[0m[4;34m/docs/tutorial/[0m[4;34msecurity[0m#[1;34m1[0m-only-load-secure-content
+[35m/home/jon/project/src/main_app/src/components/pages/[0mSignup.js
+  24 [37;40m   [0m[31;40m*[0m[31;40m/[0m[40m                                                                      [0m
+  25 [37;40m  [0m[36;40mconst[0m[37;40m [0m[33;40mfetchPassphrase[0m[37;40m [0m[31;40m=[0m[37;40m [0m[37;40m([0m[37;40m)[0m[37;40m [0m[37;40m=>[0m[37;40m [0m[37;40m{[0m[40m                                          [0m
+  26 [37;40m    [0m[33;40mget[0m[37;40m([0m[33;40m'http://localhost:5000/open/passphrase-generate'[0m[37;40m)[0m[40m                  [0m
+  27 [37;40m    [0m[37;40m.[0m[33;40mthen[0m[37;40m([0m[33;40mdata[0m[37;40m [0m[37;40m=>[0m[37;40m [0m[33;40msetPassphrase[0m[37;40m([0m[33;40mdata[0m[37;40m.[0m[33;40mpassphrase[0m[37;40m)[0m[37;40m)[0m[40m                          [0m
+  28 [37;40m    [0m[37;40m.[0m[36;40mcatch[0m[37;40m([0m[33;40merror[0m[37;40m [0m[37;40m=>[0m[37;40m [0m[33;40mconsole[0m[37;40m.[0m[33;40mlog[0m[37;40m([0m[33;40merror[0m[37;40m)[0m[37;40m)[0m[40m                                    [0m
+
+
+Insecure Protocol
+[4;34mhttps://www.electronjs.org[0m[4;34m/docs/tutorial/[0m[4;34msecurity[0m#[1;34m1[0m-only-load-secure-content
+[35m/home/jon/project/src/main_app/src/components/pages/[0mSignup.js
+  36 [37;40m    [0m[33;40mevent[0m[37;40m.[0m[33;40mpreventDefault[0m[37;40m([0m[37;40m)[0m[40m                                                 [0m
+  37 [37;40m    [0m[33;40mpost[0m[37;40m([0m[40m                                                                  [0m
+  38 [37;40m      [0m[33;40m'http://localhost:5000/open/create-client'[0m[37;40m,[0m[40m                          [0m
+  39 [37;40m      [0m[36;40mnull[0m[37;40m,[0m[40m                                                                [0m
+  40 [37;40m      [0m[37;40m{[0m[37;40m [0m[33;40mpassphrase[0m[37;40m [0m[37;40m}[0m[37;40m [0m[37;40m)[0m[40m                                                     [0m
+
+
+Insecure Protocol
+[4;34mhttps://www.electronjs.org[0m[4;34m/docs/tutorial/[0m[4;34msecurity[0m#[1;34m1[0m-only-load-secure-content
+[35m/home/jon/project/src/main_app/src/components/layouts/[0mContactListItem.js
+  24 [37;40m    [0m[36;40mconst[0m[37;40m [0m[33;40mreFetch[0m[37;40m [0m[31;40m=[0m[37;40m [0m[37;40m([0m[37;40m)[0m[37;40m [0m[37;40m=>[0m[37;40m [0m[37;40m{[0m[40m                                                [0m
+  25 [37;40m        [0m[33;40mget[0m[37;40m([0m[33;40m`[0m[33;40mhttp://localhost:5000/outpost/contacts?id=[0m[33;40m${[0m[33;40mcontact[0m[37;40m.[0m[33;40mid[0m[33;40m}[0m[33;40m`[0m[37;40m,[0m[40m     [0m
+  26 [37;40m            [0m[33;40mglobalContext[0m[37;40m.[0m[33;40mbearToken[0m[37;40m)[0m[40m                                       [0m
+  27 [37;40m        [0m[37;40m.[0m[33;40mthen[0m[37;40m([0m[33;40mres[0m[37;40m [0m[37;40m=>[0m[37;40m [0m[33;40mres[0m[37;40m.[0m[33;40mcontacts[0m[37;40m)[0m[40m                                         [0m
+
+
+Insecure Protocol
+[4;34mhttps://www.electronjs.org[0m[4;34m/docs/tutorial/[0m[4;34msecurity[0m#[1;34m1[0m-only-load-secure-content
+[35m/home/jon/project/src/main_app/src/components/layouts/[0mContactListItem.js
+  35 [37;40m        [0m[33;40msetContactState[0m[37;40m([0m[33;40mcontact[0m[37;40m)[0m[40m                                           [0m
+  36 [40m                                                                           [0m
+  37 [37;40m        [0m[33;40mget[0m[37;40m([0m[33;40m`[0m[33;40mhttp://localhost:5000/outpost/messages?id=[0m[33;40m${[0m[33;40mcontact[0m[37;40m.[0m[33;40mid[0m[33;40m}[0m[33;40m&limit=[0m
+  38 [37;40m        [0m[33;40mglobalContext[0m[37;40m.[0m[33;40mbearToken[0m[37;40m)[0m[40m                                           [0m
+  39 [37;40m        [0m[37;40m.[0m[33;40mthen[0m[37;40m([0m[33;40mresponse[0m[37;40m [0m[37;40m=>[0m[37;40m [0m[33;40mresponse[0m[37;40m.[0m[33;40mmessages[0m[37;40m)[0m[40m                               [0m
+
+
+Insecure Protocol
+[4;34mhttps://www.electronjs.org[0m[4;34m/docs/tutorial/[0m[4;34msecurity[0m#[1;34m1[0m-only-load-secure-content
+[35m/home/jon/project/src/main_app/src/components/layouts/[0mContactListItem.js
+  73 [37;40m        [0m[33;40mevent[0m[37;40m.[0m[33;40mpreventDefault[0m[37;40m([0m[37;40m)[0m[40m                                             [0m
+  74 [40m                                                                           [0m
+  75 [37;40m        [0m[33;40mpatch[0m[37;40m([0m[33;40m'http://localhost:5000/outpost/contacts'[0m[37;40m,[0m[40m                    [0m
+  76 [37;40m            [0m[33;40mglobalContext[0m[37;40m.[0m[33;40mbearToken[0m[37;40m,[0m[40m                                       [0m
+  77 [37;40m            [0m[37;40m{[0m[37;40m [0m[33;40mid[0m[31;40m:[0m[37;40m [0m[33;40mcontact[0m[37;40m.[0m[33;40mid[0m[37;40m,[0m[37;40m [0m[33;40malias[0m[37;40m [0m[37;40m}[0m[37;40m)[0m[40m                                     [0m
+
+
+Insecure Protocol
+[4;34mhttps://www.electronjs.org[0m[4;34m/docs/tutorial/[0m[4;34msecurity[0m#[1;34m1[0m-only-load-secure-content
+[35m/home/jon/project/src/main_app/src/components/layouts/[0mContactListItem.js
+  94 [37;40m    [0m[36;40mconst[0m[37;40m [0m[33;40mconfirmDelete[0m[37;40m [0m[31;40m=[0m[37;40m [0m[33;40mevent[0m[37;40m [0m[37;40m=>[0m[37;40m [0m[37;40m{[0m[40m                                       [0m
+  95 [37;40m        [0m[33;40mevent[0m[37;40m.[0m[33;40mpreventDefault[0m[37;40m([0m[37;40m)[0m[40m                                             [0m
+  96 [37;40m        [0m[33;40mdeleteRequest[0m[37;40m([0m[33;40m'http://localhost:5000/outpost/contacts'[0m[37;40m,[0m[40m            [0m
+  97 [37;40m        [0m[33;40mglobalContext[0m[37;40m.[0m[33;40mbearToken[0m[37;40m,[0m[40m                                           [0m
+  98 [37;40m        [0m[37;40m{[0m[37;40m [0m[33;40mid[0m[31;40m:[0m[37;40m [0m[33;40mcontact[0m[37;40m.[0m[33;40mid[0m[37;40m,[0m[37;40m [0m[33;40malias[0m[37;40m [0m[37;40m}[0m[37;40m)[0m[40m                                         [0m
+
+
+Insecure Protocol
+[4;34mhttps://www.electronjs.org[0m[4;34m/docs/tutorial/[0m[4;34msecurity[0m#[1;34m1[0m-only-load-secure-content
+[35m/home/jon/project/src/main_app/src/util/[0msocketAuth.js
+  4 [37;40m    [0m[33;40msocket[0m[37;40m.[0m[33;40mon[0m[37;40m([0m[33;40m'Authentication request'[0m[37;40m,[0m[37;40m [0m[33;40masync[0m[37;40m [0m[33;40mdata[0m[37;40m [0m[37;40m=>[0m[37;40m [0m[37;40m{[0m[40m                     [0m
+  5 [37;40m        [0m[33;40mpost[0m[37;40m([0m[40m                                                               [0m
+  6 [37;40m          [0m[33;40m'http://localhost:5000/outpost/encrypt'[0m[37;40m,[0m[40m                          [0m
+  7 [37;40m          [0m[33;40mcontext[0m[37;40m.[0m[33;40mbearToken[0m[37;40m,[0m[40m                                                [0m
+  8 [37;40m          [0m[37;40m{[0m[40m                                                                 [0m
+
+
+Insecure Protocol
+[4;34mhttps://www.electronjs.org[0m[4;34m/docs/tutorial/[0m[4;34msecurity[0m#[1;34m1[0m-only-load-secure-content
+[35m/home/jon/project/src/main_app/src/util/[0maddContact.js
+  16 [36;40mconst[0m[37;40m [0m[33;40msetContact[0m[37;40m [0m[31;40m=[0m[37;40m [0m[33;40masync[0m[37;40m [0m[37;40m([0m[33;40mcontact[0m[37;40m,[0m[37;40m [0m[33;40mmyToken[0m[37;40m)[0m[37;40m [0m[37;40m=>[0m[37;40m [0m[37;40m{[0m[40m                           [0m
+  17 [37;40m    [0m[33;40mpost[0m[37;40m([0m[33;40m'http://localhost:5000/outpost/contacts'[0m[37;40m,[0m[40m                         [0m
+  18 [37;40m        [0m[33;40mmyToken[0m[37;40m,[0m[40m                                                           [0m
+  19 [37;40m        [0m[33;40mcontact[0m[40m                                                            [0m
+
+
+Insecure Protocol
+[4;34mhttps://www.electronjs.org[0m[4;34m/docs/tutorial/[0m[4;34msecurity[0m#[1;34m1[0m-only-load-secure-content
+[35m/home/jon/project/src/main_app/src/context/global/[0mGlobalState.js
+  39 [37;40m              [0m[36;40mlet[0m[37;40m [0m[33;40mencryptedToken[0m[37;40m [0m[31;40m=[0m[37;40m [0m[33;40mawait[0m[37;40m [0m[33;40mpost[0m[37;40m([0m[40m                             [0m
+  40 [37;40m                [0m[33;40m'http://localhost:5000/outpost/encrypt'[0m[37;40m,[0m[40m                   [0m
+  41 [37;40m                [0m[33;40mstate[0m[37;40m.[0m[33;40mbearToken[0m[37;40m,[0m[40m                                           [0m
+  42 [37;40m                [0m[37;40m{[0m[40m                                                          [0m
+
+
+Insecure Protocol
+[4;34mhttps://www.electronjs.org[0m[4;34m/docs/tutorial/[0m[4;34msecurity[0m#[1;34m1[0m-only-load-secure-content
+[35m/home/jon/project/src/main_app/src/context/global/[0mGlobalState.js
+  55 [37;40m              [0m[33;40msocket[0m[37;40m.[0m[33;40mon[0m[37;40m([0m[33;40m'message'[0m[37;40m,[0m[37;40m [0m[33;40mmessage[0m[37;40m [0m[37;40m=>[0m[37;40m [0m[37;40m{[0m[40m                            [0m
+  56 [37;40m                [0m[33;40mpost[0m[37;40m([0m[40m                                                      [0m
+  57 [37;40m                    [0m[33;40m'http://localhost:5000/outpost/decrypt'[0m[37;40m,[0m[40m               [0m
+  58 [37;40m                    [0m[33;40mstate[0m[37;40m.[0m[33;40mbearToken[0m[37;40m,[0m[40m                                       [0m
+  59 [37;40m                    [0m[37;40m{[0m[37;40m [0m[33;40mmessage[0m[37;40m [0m[37;40m}[0m[40m                                            [0m
+
+
+Insecure Protocol
+[4;34mhttps://www.electronjs.org[0m[4;34m/docs/tutorial/[0m[4;34msecurity[0m#[1;34m1[0m-only-load-secure-content
+[35m/home/jon/project/src/main_app/src/context/global/[0mGlobalState.js
+  60 [37;40m                  [0m[37;40m)[0m[37;40m.[0m[33;40mthen[0m[37;40m([0m[33;40mdecrypted[0m[37;40m [0m[37;40m=>[0m[37;40m [0m[37;40m{[0m[40m                                    [0m
+  61 [37;40m                    [0m[33;40mpost[0m[37;40m([0m[40m                                                  [0m
+  62 [37;40m                      [0m[33;40m'http://localhost:5000/outpost/messages'[0m[37;40m,[0m[40m            [0m
+  63 [37;40m                      [0m[33;40mstate[0m[37;40m.[0m[33;40mbearToken[0m[37;40m,[0m[40m                                     [0m
+  64 [37;40m                      [0m[33;40mdecrypted[0m[37;40m.[0m[33;40mmessage[0m[40m                                    [0m
+
+
+Insecure Protocol
+[4;34mhttps://www.electronjs.org[0m[4;34m/docs/tutorial/[0m[4;34msecurity[0m#[1;34m1[0m-only-load-secure-content
+[35m/home/jon/project/src/main_app/src/context/global/[0mGlobalState.js
+  87 [37;40m    [0m[36;40mconst[0m[37;40m [0m[33;40mloadContacts[0m[37;40m [0m[31;40m=[0m[37;40m [0m[33;40mtoken[0m[37;40m [0m[37;40m=>[0m[37;40m [0m[37;40m{[0m[40m                                        [0m
+  88 [37;40m        [0m[33;40mfetch[0m[37;40m([0m[33;40m'http://localhost:5000/outpost/contacts'[0m[37;40m,[0m[37;40m [0m[37;40m{[0m[40m                  [0m
+  89 [37;40m                [0m[33;40mmode[0m[31;40m:[0m[37;40m [0m[33;40m'cors'[0m[37;40m,[0m[40m                                              [0m
+  90 [37;40m                [0m[33;40mheaders[0m[31;40m:[0m[37;40m [0m[36;40mnew[0m[37;40m [0m[33;40mHeaders[0m[37;40m([0m[37;40m{[0m[40m                                     [0m
+
+
+Insecure Protocol
+[4;34mhttps://www.electronjs.org[0m[4;34m/docs/tutorial/[0m[4;34msecurity[0m#[1;34m1[0m-only-load-secure-content
+[35m/home/jon/project/src/main_app/src/context/global/[0mGlobalState.js
+  106 [37;40m            [0m[36;40mtry[0m[37;40m [0m[37;40m{[0m[40m                                                         [0m
+  107 [37;40m                [0m[33;40mfetch[0m[37;40m([0m[40m                                                    [0m
+  108 [37;40m                  [0m[33;40m"http://localhost:5000/open/login"[0m[37;40m,[0m[40m                     [0m
+  109 [37;40m                  [0m[37;40m{[0m[40m                                                       [0m
+  110 [37;40m                    [0m[33;40mmethod[0m[31;40m:[0m[37;40m [0m[33;40m'POST'[0m[37;40m,[0m[40m                                       [0m
+
+
+Insecure Protocol
+[4;34mhttps://www.electronjs.org[0m[4;34m/docs/tutorial/[0m[4;34msecurity[0m#[1;34m1[0m-only-load-secure-content
+[35m/home/jon/project/src/main_app/src/context/global/[0mGlobalState.js
+  159 [37;40m    [0m[30;40m// const getContact = async (id) => {[0m[40m                                 [0m
+  160 [37;40m    [0m[30;40m//     const contact = await fetch([0m[40m                                   [0m
+  161 [37;40m    [0m[30;40m//         `http://localhost:5000/outpost/contacts?id=${id}`, [0m[40m        [0m
+  162 [37;40m    [0m[30;40m//             {[0m[40m                                                      [0m
+  163 [37;40m    [0m[30;40m//               method: 'GET',[0m[40m                                       [0m
+
+
+Insecure Protocol
+[4;34mhttps://www.electronjs.org[0m[4;34m/docs/tutorial/[0m[4;34msecurity[0m#[1;34m1[0m-only-load-secure-content
+[35m/home/jon/project/src/main_app/src/context/global/[0mGlobalState.js
+  171 [37;40m    [0m[30;40m//     const messages = await fetch([0m[40m                                  [0m
+  172 [37;40m    [0m[30;40m//         `http://localhost:5000/outpost/messages?id=${id}`, [0m[40m        [0m
+  173 [37;40m    [0m[30;40m//             {[0m[40m                                                      [0m
+  174 [37;40m    [0m[30;40m//               method: 'GET',[0m[40m                                       [0m
+
+
+Insecure Protocol
+[4;34mhttps://www.electronjs.org[0m[4;34m/docs/tutorial/[0m[4;34msecurity[0m#[1;34m1[0m-only-load-secure-content
+[35m/home/jon/project/src/main_app/public/[0melectron.js
+  23 [37;40m    [0m[33;40mmainWindow[0m[37;40m.[0m[33;40mloadURL[0m[37;40m([0m[40m                                                    [0m
+  24 [37;40m        [0m[33;40misDev[0m[40m                                                              [0m
+  25 [37;40m        [0m[31;40m?[0m[37;40m [0m[33;40m"http://localhost:3000"[0m[40m                                          [0m
+  26 [37;40m        [0m[31;40m:[0m[37;40m [0m[33;40m`[0m[33;40mfile://[0m[33;40m${[0m[33;40mpath[0m[37;40m.[0m[33;40mjoin[0m[37;40m([0m[33;40m__dirname[0m[37;40m,[0m[37;40m [0m[33;40m"../build/index.html"[0m[37;40m)[0m[33;40m}[0m[33;40m`[0m[40m          [0m
+  27 [37;40m    [0m[37;40m)[0m[40m                                                                      [0m
+
+
+Insecure Protocol
+[4;34mhttps://www.electronjs.org[0m[4;34m/docs/tutorial/[0m[4;34msecurity[0m#[1;34m1[0m-only-load-secure-content
+[35m/home/jon/project/src/main_app/public/[0mstart-react.js
+  4 [36;40mconst[0m[37;40m [0m[33;40mport[0m[37;40m [0m[31;40m=[0m[37;40m [0m[33;40mprocess[0m[37;40m.[0m[33;40menv[0m[37;40m.[0m[33;40mPORT[0m[37;40m [0m[31;40m?[0m[37;40m [0m[33;40mprocess[0m[37;40m.[0m[33;40menv[0m[37;40m.[0m[33;40mPORT[0m[37;40m [0m[31;40m-[0m[37;40m [0m[37;40m100[0m[37;40m [0m[31;40m:[0m[37;40m [0m[37;40m3000[0m[40m               [0m
+  5 [40m                                                                            [0m
+  6 [33;40mprocess[0m[37;40m.[0m[33;40menv[0m[37;40m.[0m[33;40mELECTRON_START_URL[0m[37;40m [0m[31;40m=[0m[37;40m [0m[33;40m`[0m[33;40mhttp://localhost:[0m[33;40m${[0m[33;40mport[0m[33;40m}[0m[33;40m`[0m[40m                 [0m
+  7 [40m                                                                            [0m
+  8 [36;40mconst[0m[37;40m [0m[33;40mclient[0m[37;40m [0m[31;40m=[0m[37;40m [0m[36;40mnew[0m[37;40m [0m[33;40mnet[0m[37;40m.[0m[33;40mSocket[0m[37;40m([0m[37;40m)[0m[40m                                             [0m
+
+
+Node Integration
+[4;34mhttps://www.electronjs.org[0m[4;34m/docs/tutorial/[0m[4;34msecurity[0m#[1;34m1[0m-only-load-secure-content
+[35m/home/jon/project/src/main_app/public/[0mstart.js
+  19 [37;40m    [0m[33;40mheight[0m[31;40m:[0m[37;40m [0m[37;40m600[0m[37;40m,[0m[40m                                                           [0m
+  20 [37;40m    [0m[33;40mwebPreferences[0m[31;40m:[0m[37;40m [0m[37;40m{[0m[40m                                                      [0m
+  21 [37;40m      [0m[33;40mnodeIntegration[0m[31;40m:[0m[37;40m [0m[36;40mtrue[0m[40m                                                [0m
+  22 [37;40m    [0m[37;40m}[0m[40m                                                                      [0m
+  23 [37;40m  [0m[37;40m}[0m[37;40m)[0m[40m                                                                       [0m
+
+

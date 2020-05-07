@@ -13,8 +13,10 @@ console = Console('standard')
 path = sys.argv[1]
 
 setVerbose = False
-if len(sys.argv) > 2:
-    if sys.argv[2] == '-y': setVerbose = True
+setGraphical = False
+for arg in sys.argv:
+    if arg == '-v': setVerbose = True
+    if arg == '-g': setGraphical = True
 
 # Configure blacklist by adding patterns
 # that shall not occur in ANY file or directory name
@@ -55,7 +57,7 @@ list_of_files = cleaner(files, blacklist, demandList)
 #   it's absent from the whole project.
 #
 risks = positive_file_scan(list_of_files)
-for risk in risks.toString(setVerbose):
+for risk in risks.toString(setVerbose, setGraphical):
     for item in risk:
         console.print(item)
 
