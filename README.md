@@ -5,7 +5,7 @@ Electron JS is a framework which allows you to build cross-platform desktop apps
 This applications strives to help developers working in Electron to avoid the most common and serious risks within the framework. It will not detect all issues, and like most static analysis tools it will have a high rate of false positives, but it is automatic and may lighten your load a bit
 
 ## Language Support:
-The parser currently supports ECMAScript, and partly, JSX. It is unable to process a mix of JavaScript code and JSX. This is because switching to JSX mode requires an understanding of the context, which a tokenizer does not have. A closing JSX element (such as </Emoji>) confuses the tokenizer since the forward slash (/) is identified as the start of a regular expression.
+The parser currently supports ECMAScript, and partly, JSX. It is unable to process a mix of JavaScript code and JSX. This is because switching to JSX mode requires an understanding of the context, which a tokenizer does not have. A closing JSX element (such as `</Emoji>`) confuses the tokenizer since the forward slash (/) is identified as the start of a regular expression.
 
 ## Development progress
 As of now, the scanning looks for criteria specified in the official Electron documentation. The scanning is divided into two parts:
