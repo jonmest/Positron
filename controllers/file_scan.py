@@ -10,6 +10,8 @@ def fileScan (path: str):
         fp = open(path, 'r')
         code = fp.read()
         analyze(code, patternStore)
+    except:
+        print("Something went wrong when scanning " + path + "\n")
     finally:
         fp.close()
     risks.load(patternStore, path)
