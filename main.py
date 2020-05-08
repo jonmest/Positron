@@ -13,10 +13,10 @@ console = Console('standard')
 path = sys.argv[1]
 
 setVerbose = False
-setGraphical = False
+setGraphical = True
 for arg in sys.argv:
     if arg == '-v': setVerbose = True
-    if arg == '-g': setGraphical = True
+    if arg == '-ng': setGraphical = False
 
 # Configure blacklist by adding patterns
 # that shall not occur in ANY file or directory name
