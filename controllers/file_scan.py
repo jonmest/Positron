@@ -1,0 +1,16 @@
+from models import Risk_List
+from .analyze_line import analyze_line 
+from lexer.pattern_store import PatternStore
+from lexer.analyze import analyze
+
+def fileScan (path: str):
+    risks = Risk_List()
+    patternStore = PatternStore()
+    try:
+        fp = open(path, 'r')
+        code = fp.read()
+        analyze(code, patternStore)
+    finally:
+        fp.close()
+    risks.load(patternStore, path)
+    return risks

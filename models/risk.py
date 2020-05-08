@@ -1,4 +1,4 @@
-from controllers import Prio, Colors
+from controllers import Prio, Colors, fetchExcerpt
 from rich.text import Text
 from rich.rule import Rule
 from rich.table import Column, Table
@@ -6,24 +6,28 @@ from rich .panel import Panel
 
 # Intended to be abstract
 class Risk ():
-    def __init__ (self, name, desc, loc, excerpt, prio, link=None):
+    def __init__ (self, name, desc, loc, prio, link=None):
         self.name = name
         self.desc = desc
         self.loc = loc
-        self.excerpt = excerpt
         self.prio = prio
         self.link = link
+        self.path = None
+
+    def setPath (self, path):
+        self.path = path
 
     def toString (self, verbose:bool = False, graphical: bool = False) -> list:
         return [self.nameToString(graphical), self.description(verbose, graphical), self.locationString(graphical), self.excerptView(graphical), '\n\n']
 
     def excerptView (self, graphical: bool):
-        if not graphical: return self.excerpt
-        return Panel(self.excerpt)
+        excerpt = fetchExcerpt(self.path, self.loc)
+        if not graphical: return excerpt
+        return Panel(excerpt)
 
     def locationString (self, graphical: bool):
-        if not graphical: return self.loc
-        return Text(self.loc, style='italic bold blue')
+        if not graphical: return self.Text
+        return Text(self.path, style='italic bold blue')
 
     def description (self, verbose:bool, graphical: bool):
         if not graphical:

@@ -1,7 +1,7 @@
 import os
 import re
 import sys
-from controllers import positive_file_scan
+from controllers import fileScan
 from rich.console import Console
 from rich.text import Text
 
@@ -56,8 +56,15 @@ list_of_files = cleaner(files, blacklist, demandList)
 #   absence of it in one file doesn't mean
 #   it's absent from the whole project.
 #
-risks = positive_file_scan(list_of_files)
-for risk in risks.toString(setVerbose, setGraphical):
-    for item in risk:
-        console.print(item)
+for file in list_of_files:
+    risks = fileScan(file)
+    for risk in risks.toString(setVerbose, setGraphical):
+        for item in risk:
+            console.print(item)
+        # for item in risk.toString(setVerbose, setGraphical):
+        #     console.print(item)
+
+# for risk in risks.toString(setVerbose, setGraphical):
+#     for item in risk:
+#         console.print(item)
 

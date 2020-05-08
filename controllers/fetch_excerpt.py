@@ -3,18 +3,22 @@ from rich.console import Console
 from rich.syntax import Syntax
 console = Console()
 
-def fetchExcerpt (path: str, line_count: int) -> Syntax:
+def fetchExcerpt (path: str, loc: dict) -> Syntax:
     string = ''
+    start = loc.start.line
+    end = loc.end.line
+
     try:
         fp = open(path, 'r')
         line = fp.readline()
         count = 1
         
         while line:
-            if (count >= line_count - 2 and count <= line_count + 2):
+            if (start <= count <= end):
                 string += line
             line = fp.readline()
             count += 1
-    finally:
         fp.close()
-    return Syntax(string, 'javascript', theme="monokai", line_numbers=True, start_line=line_count-2)
+    except:
+        print("Something messed up.")
+    return Syntax(string, 'javascript', theme="monokai", line_numbers=True, start_line=start)

@@ -1,2 +1,3 @@
-from analyze_file import analyze_file
 import .risks
+from .lexer import PatternStore
+from .lexer import analyze
