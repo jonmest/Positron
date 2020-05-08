@@ -5,22 +5,42 @@ import re
 globalPositives = []
 globalNegatives = []
 program = """
-const URL = require('url').URL
-
-app.on('web-contents-created', (event, contents) => {
-  contents.on('will-s', (event, navigationUrl) => {
-    const parsedUrl = new URL(navigationUrl)
-
-    contents.on('will-navigate', (event, navigationUrl) => {
-    const parsedUrl = new URL(navigationUrl)
-
-    if (parsedUrl.origin !== 'https://example.com') {
-      event.preventDefault()
-    }
-})
-  })
-})
+//  Bad
+const electron = require('electron')
+electron.openExternal("Hejsan")
 """
+
+def isRemoteDisabled (node):
+    if (node.type == 'ObjectExpression'):
+        for x in node.properties:
+            if x.key.name == "enableRemoteModule":
+                if x.value.value == False:
+                    return ([], ['enableRemoteModule'])
+    return ([], [])
+
+
+# If openExternal with a variable as URL argument
+# IE, it may come from user input.
+def untrustedOpenExternal (node):
+    if (node.type == 'CallExpression'):
+        if node.callee.name == "openExternal":
+                if node.arguments[0].type == "Identifier":
+                    return ([], ['openExternal'])
+        elif getattr(node.callee, 'property'):
+            if node.callee.property.name  == "openExternal":
+                if node.arguments[0].type == "Identifier":
+                    return ([], ['openExternal'])
+    return ([], [])
+
+def isThereListenerNewWindow (node):
+    if (node.type == 'ExpressionStatement'):
+        if hasattr(node.expression.callee, 'property'):
+            if node.expression.callee.property.name == "on":
+                for x in node.expression.arguments:
+                    if x.type == "Literal" and x.value == "new-window":
+                        return ([], ["new-window"])
+
+    return ([], [])
 
 #^^^ 
 # In will-navigate listener, should have an event.preventDefault
@@ -112,7 +132,7 @@ def isBadURL (node):
         ): return (['Insecure protocol.'], [])
     return ([], [])
 
-patterns = [isNavigationDisabled]
+patterns = [untrustedOpenExternal]
 
 def checkPatterns (node, patterns):
     for pattern in patterns:
