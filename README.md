@@ -23,4 +23,4 @@ For verbose mode, where a brief explanation of the security risk is included, ad
 `python3 main.py <path-to-directory-of-electron-project> -v`
 
 ## Screenshot
-![Screenshot of application in terminal](.PositronDemo.png)
+![Screenshot of application in terminal](PositronDemo.png)
