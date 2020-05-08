@@ -10,4 +10,4 @@ def analyze (code: str, patternStore: PatternStore):
     def traverse (node, meta):
         checkPatterns(node, PATTERNS)
     
-    esprima.parseScript(code, loc=True, delegate=traverse)
+    esprima.parseScript(code, loc=True, delegate=traverse, tolerant=True)

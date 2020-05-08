@@ -30,7 +30,7 @@ def untrustedOpenExternal (node, patternStore):
 def isThereListenerNewWindow (node, patternStore):
     if (node.type == 'ExpressionStatement'):
         if hasattr(node.expression.callee, 'property'):
-            if node.expression.callee.property.name == "on":
+            if getattr(node.expression.callee.property, 'name', False) == "on":
                 for x in node.expression.arguments:
                     if x.type == "Literal" and x.value == "new-window":
                         patternStore.addPositive(
@@ -40,7 +40,7 @@ def isThereListenerNewWindow (node, patternStore):
 def isNavigationDisabled (node, patternStore):
     if (node.type == 'ExpressionStatement'):
         if hasattr(node.expression.callee, 'property'):
-            if node.expression.callee.property.name == "on":
+            if getattr(node.expression.callee.property, 'name', False) == "on":
                 for x in node.expression.arguments:
                     if x.type == "Literal" and x.value == "will-navigate":
                         patternStore.addPositive(
@@ -50,7 +50,7 @@ def isNavigationDisabled (node, patternStore):
 def isThereListenerForWebView (node, patternStore):
     if (node.type == 'ExpressionStatement'):
         if hasattr(node.expression.callee, 'property'):
-            if node.expression.callee.property.name == "on":
+            if getattr(node.expression.callee.property, 'name', False) == "on":
                 for x in node.expression.arguments:
                     if x.type == "Literal" and x.value == "will-attach-webview":
                         patternStore.addPositive("will-attach-webview")
