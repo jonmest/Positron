@@ -21,3 +21,6 @@ Positive scanning is implemented. Negative scanning is not.
 For verbose mode, where a brief explanation of the security risk is included, add the flag `-v`.
 
 `python3 main.py <path-to-directory-of-electron-project> -v`
+
+## Screenshot
+![Screenshot of application in terminal](.PositronDemo.png)
