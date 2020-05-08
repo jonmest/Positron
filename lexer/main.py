@@ -1,86 +1,129 @@
-#
-# This example shows how to write a basic JSON parser
-#
-# The code is short and clear, and outperforms every other parser (that's written in Python).
-# For an explanation, check out the JSON parser tutorial at /docs/json_tutorial.md
-#
+from collections.abc import Iterable   # drop `.abc` with Python 2.7 or lower
+import esprima
+import inspect
+import re
+globalPositives = []
+globalNegatives = []
+program = """
+const URL = require('url').URL
 
-import sys
+app.on('web-contents-created', (event, contents) => {
+  contents.on('will-s', (event, navigationUrl) => {
+    const parsedUrl = new URL(navigationUrl)
 
-from lark import Lark, Transformer, v_args
+    contents.on('will-navigate', (event, navigationUrl) => {
+    const parsedUrl = new URL(navigationUrl)
 
-json_grammar = r"""
-    ?start: value
-    ?value: object
-          | array
-          | string
-          | SIGNED_NUMBER      -> number
-          | "true"             -> true
-          | "false"            -> false
-          | "null"             -> null
-    array  : "[" [value ("," value)*] "]"
-    object : "{" [pair ("," pair)*] "}"
-    pair   : string ":" value
-    string : ESCAPED_STRING
-    %import common.ESCAPED_STRING
-    %import common.SIGNED_NUMBER
-    %import common.WS
-    %ignore WS
+    if (parsedUrl.origin !== 'https://example.com') {
+      event.preventDefault()
+    }
+})
+  })
+})
 """
 
+#^^^ 
+# In will-navigate listener, should have an event.preventDefault
+def isNavigationDisabled (node):
+    if (node.type == 'ExpressionStatement'):
+        if hasattr(node.expression.callee, 'property'):
+            if node.expression.callee.property.name == "on":
+                for x in node.expression.arguments:
+                    if x.type == "Literal" and x.value == "will-navigate":
+                        return ([], ["will-navigate"])
 
-class TreeToJson(Transformer):
-    @v_args(inline=True)
-    def string(self, s):
-        return s[1:-1].replace('\\"', '"')
+    return ([], [])
 
-    array = list
-    pair = tuple
-    object = dict
-    number = v_args(inline=True)(float)
+def isThereListenerForWebView (node):
+    if (node.type == 'ExpressionStatement'):
+        if hasattr(node.expression.callee, 'property'):
+            if node.expression.callee.property.name == "on":
+                for x in node.expression.arguments:
+                    if x.type == "Literal" and x.value == "will-attach-webview":
+                        return ([], ["will-attach-webview"])
 
-    null = lambda self, _: None
-    true = lambda self, _: True
-    false = lambda self, _: False
+    return ([], [])
 
+def isBlinkFeaturesTrue (node):
+    if (node.type == 'ObjectExpression'):
+        for x in node.properties:
+            if x.key.name == "enableBlinkFeatures":
+                return (['enableBlinkFeatures'], [])
+    return ([], [])
 
-### Create the JSON parser with Lark, using the Earley algorithm
-# json_parser = Lark(json_grammar, parser='earley', lexer='standard')
-# def parse(x):
-#     return TreeToJson().transform(json_parser.parse(x))
+def isExperimentalFeaturesTrue (node):
+    if (node.type == 'ObjectExpression'):
+        for x in node.properties:
+            if x.key.name == "experimentalFeatures":
+                if x.value.value == True:
+                    return (['experimentalFeatures'], [])
+    return ([], [])
 
-### Create the JSON parser with Lark, using the LALR algorithm
-json_parser = Lark(json_grammar, parser='lalr',
-                   # Using the standard lexer isn't required, and isn't usually recommended.
-                   # But, it's good enough for JSON, and it's slightly faster.
-                   lexer='standard',
-                   # Disabling propagate_positions and placeholders slightly improves speed
-                   propagate_positions=False,
-                   maybe_placeholders=False,
-                   # Using an internal transformer is faster and more memory efficient
-                   transformer=TreeToJson())
-parse = json_parser.parse
+def isAllowRunningInsecureContentTrue (node):
+    if (node.type == 'ObjectExpression'):
+        for x in node.properties:
+            if x.key.name == "allowRunningInsecureContent":
+                if x.value.value == True:
+                    return (['allowRunningInsecureContent'], [])
+    return ([], [])
 
+def isWebSecurityDisabled (node):
+    if (node.type == 'ObjectExpression'):
+        for x in node.properties:
+            if x.key.name == "webSecurity":
+                if x.value.value == False:
+                    return (['isWebSecurityDisabled'], [])
+    return ([], [])
 
-def test():
-    test_json = '''
-        {
-            "empty_object" : {},
-            "empty_array"  : [],
-            "booleans"     : { "YES" : true, "NO" : false },
-            "numbers"      : [ 0, 1, -2, 3.3, 4.4e5, 6.6e-7 ],
-            "strings"      : [ "This", [ "And" , "That", "And a \\"b" ] ],
-            "nothing"      : null
-        }
-    '''
+def isSet (node):
+    if (node.type == 'CallExpression'):
+        if node.callee.name == "setPermissionRequestHandler":
+            return ([], ['setPermissionRequestHandler'])
+        elif getattr(node.callee, 'property'):
+            if node.callee.property.name  == "setPermissionRequestHandler":
+                return ([], ['setPermissionRequestHandler'])
+    return ([], [])
 
-    j = parse(test_json)
-    print(j)
-    import json
-    assert j == json.loads(test_json)
+def isContextIsolationTrue (node):
+    if (node.type == 'ObjectExpression'):
+        for x in node.properties:
+            if x.key.name == "contextIsolation":
+                if x.value.value == True:
+                    return ([], ['contextIsolation'])
+    return ([], [])
 
+def isNodeIntegrationTrue (node):
+    if (node.type == 'ObjectExpression'):
+        for x in node.properties:
+            if x.key.name == "nodeIntegration":
+                if x.value.value == True:
+                    return (['Node integration.'], [])
+            if x.key.name == 'nodeIntegrationInWorker':
+                if x.value.value == True:
+                    return (['Node integrationWorker.'], [])
+    return ([], [])
 
-if __name__ == '__main__':
-    # test()
-    with open(sys.argv[1]) as f:
-        print(parse(f.read()))
+def isBadURL (node):
+    if (node.type == "Literal"):
+        if (
+            "http:" in node.value.lower() or
+            "ws:" in node.value.lower() or
+            "ftp:" in node.value.lower()
+        ): return (['Insecure protocol.'], [])
+    return ([], [])
+
+patterns = [isNavigationDisabled]
+
+def checkPatterns (node, patterns):
+    for pattern in patterns:
+        results: tuple = pattern(node)
+        globalPositives.extend(results[0])
+        globalNegatives.extend(results[1])
+
+def traverse (node, meta):
+    checkPatterns(node, patterns)
+
+e = esprima.parseScript(program, loc=True, delegate=traverse)
+
+print(globalPositives)
+print(globalNegatives)
