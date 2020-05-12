@@ -2,6 +2,7 @@ import os
 import re
 import sys
 from controllers import fileScan
+from models import Risk_List
 from rich.console import Console
 from rich.text import Text
 
@@ -40,16 +41,16 @@ for r, d, f in os.walk(path):
     [files.append(os.path.join(r, file)) for file in f]
 
 list_of_files = cleaner(files, blacklist, demandList)
-
+risks = Risk_List()
 
 # Analyze a project in two waves
-# 1. Positive scan
+# 1. Negative scan
 #   Find patterns that should NOT occur, but do.
 #   This can be done line-by-line without storing
 #   any kind of context, since one occurence is
 #   enough to set of the alarm.
 #
-# 2. Negative scan
+# 2. Positive scan
 #   Find patterns that SHOULD occur, but don't.
 #   When scanning like this, we need to keep
 #   the complete project in mind, since an
@@ -57,14 +58,12 @@ list_of_files = cleaner(files, blacklist, demandList)
 #   it's absent from the whole project.
 #
 for file in list_of_files:
-    risks = fileScan(file)
-    for risk in risks.toString(setVerbose, setGraphical):
-        for item in risk:
-            console.print(item)
-        # for item in risk.toString(setVerbose, setGraphical):
-        #     console.print(item)
+    risks.merge(fileScan(file))
 
-# for risk in risks.toString(setVerbose, setGraphical):
-#     for item in risk:
-#         console.print(item)
+for risk in risks.negativeToString(setVerbose, setGraphical):
+    for item in risk:
+        console.print(item)
 
+for risk in risks.positiveToString(setVerbose, setGraphical):
+    for item in risk:
+        console.print(item)

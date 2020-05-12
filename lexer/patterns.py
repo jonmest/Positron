@@ -44,7 +44,7 @@ def isNavigationDisabled (node, patternStore):
                 for x in node.expression.arguments:
                     if x.type == "Literal" and x.value == "will-navigate":
                         patternStore.addPositive(
-                            r.Navigation(self.loc)
+                            r.Navigation(node.loc)
                         )
 
 def isThereListenerForWebView (node, patternStore):

@@ -11,7 +11,8 @@ def fileScan (path: str):
         code = fp.read()
         analyze(code, patternStore)
     except:
-        print("Something went wrong when scanning " + path + "\n")
+        print("Something went wrong when scanning " + path + 
+        "\nEither there is a syntax error, invalid ECMAScript, or you mix JSX in normal JS-files.\n")
     finally:
         fp.close()
     risks.load(patternStore, path)

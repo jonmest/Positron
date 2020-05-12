@@ -1,10 +1,10 @@
-from ..risk import Risk
 from ..prio import Prio
+from ..risk import Risk
 
-class Verify_WebView(Risk):
+class Attach_WebView(Risk):
     def __init__(self, loc, excerpt=True):
         Risk.__init__(self,
-        'Verify WebView Options Before Creation',
+        'Attach_WebView',
         'It is a good idea to control the creation of new <webview> tags from the main process and to verify that their webPreferences do not disable security features.',
         loc,
         Prio.PRETTY_BAD,

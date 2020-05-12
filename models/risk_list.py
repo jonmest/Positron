@@ -1,6 +1,7 @@
-from controllers import Prio, Colors
+from .prio import Prio
 from .risk import Risk
 from lexer.pattern_store import PatternStore
+from .positive_expected import expected
 
 class Risk_List:
     def __init__ (self):
@@ -17,11 +18,19 @@ class Risk_List:
         self.positiveList.extend(patternStore.positives)
 
     def merge (self, toMerge):
-        self.positiveList = self.positiveList + toMerge.positiveList
-        self.negativeList = self.negativeList + toMerge.negativeList
+        self.positiveList = [ *self.positiveList, *toMerge.positiveList]
+        self.negativeList = [ *self.negativeList,  *toMerge.negativeList]
 
-    def toString (self, verbose: bool = False, graphical: bool = False):
-        l = []
+    def negativeToString (self, verbose: bool = False, graphical: bool = False):
+        n = []
         for item in self.negativeList:
-            l.append(item.toString(verbose, graphical))
-        return l
+            n.append(item.toString(verbose, graphical))
+        print(n)
+        return n
+
+    def positiveToString (self, verbose: bool = False, graphical: bool = False):
+        p = []
+        for item in expected:
+            if not item in self.positiveList:
+                p.append(item.toString(verbose, graphical))
+        return p
